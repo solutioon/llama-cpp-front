@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI model front by agesteve</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        form {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Front de testeo de backends de modelos AI LLM soft libre con API Llama CPP Python</h1>   
+    
+    {% for mensaje in mensajes %}
+    <p>Usuario: {{ mensaje.texto }}</p>
+    <p>Respuesta: {{ mensaje.reordenado }}</p>
+    <hr>
+    {% endfor %}
+        <form action="/" method="POST">
+            <label for="texto">Envía mensaje:</label>
+            <input type="text" id="texto" name="texto">
+            <br>
+        </form>
+
+</body>
+</html>

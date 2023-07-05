@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Llama Cpp Python front - agesteve</title>
+  <style>
+    /* Estilos para el formulario y la caja de texto */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+    }
+    
+    .chat-form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .chat-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      resize: none;
+    }
+    
+    .chat-submit {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #ff6600;
+      color: #fff;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .chat-submit:hover {
+      background-color: #cc5500;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-form">
+    {% for mensaje in mensajes %}
+    <p>Usuario: {{ mensaje.texto }}</p>
+    <p>Respuesta: {{ mensaje.reordenado }}</p>
+    <hr>
+    {% endfor %}
+    <form action="/" method="POST">
+      <textarea class="chat-input" placeholder="Escribe tu mensaje..." id="texto" name="texto"></textarea>
+      <button type="submit" class="chat-submit">Enviar</button>
+      <button type="button" class="chat-submit" onclick="window.location.href='/nueva'">Nueva conversación</button>
+    </form>
+  </div>
+</body>
+</html>

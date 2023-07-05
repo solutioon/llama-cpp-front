@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot con Flask</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5">Chatbot con Flask</h1>
+        <form id="chatbot-form">
+            <div class="form-group">
+                <label for="user-query">Escribe tu consulta:</label>
+                <input type="text" class="form-control" id="user-query" name="user_query" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+        <div id="chatbot-response" class="mt-5"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const chatbotForm = document.getElementById("chatbot-form");
+        const chatbotResponse = document.getElementById("chatbot-response");
+
+        chatbotForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const userQuery = document.getElementById("user-query").value;
+            axios.post("/chatbot", {
+                user_query: userQuery
+            })
+            .then(response => {
+                chatbotResponse.innerHTML = response.data.response;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        });
+    </script>
+</body>
+</html>
+
