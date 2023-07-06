@@ -9,21 +9,38 @@ app = Flask(__name__)
 mensajes = []
 texto =""
 
-#VARIABLES PARA LLAMADA API
+#VARIABLES GLOBALES PARA LLAMADA API
 tokens=128
+# Establecer la URL de la API
+url = "http://10.200.250.55:8000/v1/completions"
+mensajes = []
 
 @app.route('/nueva', methods=['GET', 'POST'])
 def nueva():
-    mensajes = []
+    global mensajes 
+    mensajes= []
     # Realizar la acción deseada con el mensaje
     # ...
 
     #return "Acción realizada con éxito"
-    return render_template('index.html', mensajes=mensajes)
+    return render_template('index.html', mensajes=mensajes), mensajes
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    global mensajes 
+    global tokens
+    global url
+    #mensajes = []
+    # Realizar la acción deseada con el mensaje
+    # ...
+    
+    #return "Acción realizada con éxito"
+    return render_template('settings.html', mensajes=mensajes, tokens=tokens, url=url)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def reordenar():
+    global mensajes
     if request.method == 'POST':
         texto = request.form['texto']
         # Definir el JSON a enviar
@@ -63,9 +80,8 @@ def reordenar():
         
         #data = json.loads(response_data) 
         texto_reordenado = response_data["choices"][0]["text"]
-        #texto_reordenado = "hola"
         mensajes.append({'texto': texto, 'reordenado': texto_reordenado})
-    return render_template('index.html', mensajes=mensajes)
+    return render_template('index.html', mensajes=mensajes), mensajes
 
 if __name__ == '__main__':
     #app.run(debug=True)

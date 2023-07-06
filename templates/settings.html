@@ -34,7 +34,7 @@
     }
     
     .chat-form {
-      width: 95%;
+      max-width: 95%;
       margin: 0 auto;
       padding: 1px;
       background-color: #ffffff;
@@ -85,22 +85,30 @@
     <a href="/">Página principal</a>
     <a href="/settings">Configuración</a>
   </div>
-  
+  <center>
   <div class="chat-form">
-    <br> 
-    {% for mensaje in mensajes %}
-    <p>Usuario: {{ mensaje.texto }}</p>
-    <p>Respuesta: {{ mensaje.reordenado }}</p>
-    <hr>
-    {% endfor %}
-    <form action="/" method="POST">
-      <center> 
-      <textarea class="chat-input" placeholder="Escribe tu mensaje..." id="texto" name="texto"></textarea>
-      </center>
-      <button type="submit" class="chat-submit">Enviar</button>
-      <button type="button" class="chat-submit" onclick="window.location.href='/nueva'">Nueva conversación</button>
+    <br>
+    <form>
+      <a>Endpoint:</a><br>
+      <textarea class="chat-input" placeholder="{{url}}" id="url"></textarea><br>
+      <a>Tokens:</a><br>
+      <textarea class="chat-input" placeholder="{{tokens}}" id="tokens"></textarea>
+      
     </form>
   </div>
+  </center>
+  <script>
+    function update() {
+      var textarea1 = document.getElementById("textarea1").value;
+      var textarea2 = document.getElementById("textarea2").value;
+      
+      // Realizar las acciones necesarias con los valores obtenidos
+      // Puedes usar textarea1 y textarea2 en tu lógica aquí
+
+      // Mostrar una alerta para demostrar que los valores se obtuvieron correctamente
+      alert("Valores actualizados:\nÁrea de texto 1: " + url + "\nÁrea de texto 2: " + tokens);
+    }
+  </script>
 </body>
 </html>
 
